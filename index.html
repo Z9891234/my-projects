@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的项目</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    margin: 0; padding: 0 16px 40px;
+    background: #f6f8fa; color: #24292f;
+  }
+  header {
+    padding: 32px 0 16px; text-align: center;
+  }
+  header h1 { margin: 0 0 8px; font-size: 26px; }
+  header p { margin: 0; color: #57606a; font-size: 15px; }
+  h2 {
+    font-size: 20px; margin: 32px 0 12px;
+    padding-bottom: 8px; border-bottom: 2px solid #d0d7de;
+  }
+  .grid { display: grid; gap: 12px; }
+  .card {
+    background: #fff; border: 1px solid #d0d7de;
+    border-radius: 10px; padding: 16px;
+  }
+  .card h3 { margin: 0 0 8px; font-size: 17px; }
+  .card p { margin: 0 0 12px; color: #57606a; font-size: 14px; line-height: 1.6; }
+  .tag {
+    display: inline-block; font-size: 12px; padding: 2px 8px;
+    border-radius: 20px; margin-bottom: 8px;
+  }
+  .tag.free { background: #dafbe1; color: #1a7f37; }
+  .tag.paid { background: #fff8c5; color: #9a6700; }
+  .card a {
+    display: inline-block; font-size: 14px; color: #0969da;
+    text-decoration: none; font-weight: 500;
+  }
+  .card a:hover { text-decoration: underline; }
+  footer {
+    margin-top: 40px; text-align: center;
+    font-size: 13px; color: #8c959f;
+  }
+</style>
+</head>
+<body>
 
+<header>
+  <h1>我的项目</h1>
+  <p>免费项目与收费项目集中展示</p>
+</header>
+
+<h2>免费项目</h2>
+<div class="grid" id="free-list"></div>
+
+<h2>收费项目</h2>
+<div class="grid" id="paid-list"></div>
+
+<footer>© 2025 Z9891234</footer>
+
+<script>
+  // ====== 在这里维护你的项目 ======
+  // 新增项目：复制一个大括号 {...}，改内容即可
+  // type: "free" 表示免费，"paid" 表示收费
+  const projects = [
+    {
+      title: "示例免费项目",
+      desc: "这是一个免费项目的介绍，写清楚它是做什么的。",
+      type: "free",
+      link: "https://github.com/Z9891234"
+    },
+    {
+      title: "示例收费项目",
+      desc: "这是一个收费项目的介绍，写清楚功能、价格或购买方式。",
+      type: "paid",
+      link: "mailto:你的邮箱@example.com"
+    }
+  ];
+  // ================================
+
+  function render() {
+    const freeList = document.getElementById("free-list");
+    const paidList = document.getElementById("paid-list");
+    freeList.innerHTML = "";
+    paidList.innerHTML = "";
+
+    projects.forEach(function (p) {
+      const card = document.createElement("div");
+      card.className = "card";
+      const tagClass = p.type === "free" ? "free" : "paid";
+      const tagText = p.type === "free" ? "免费" : "收费";
+      card.innerHTML =
+        '<span class="tag ' + tagClass + '">' + tagText + '</span>' +
+        '<h3>' + p.title + '</h3>' +
+        '<p>' + p.desc + '</p>' +
+        '<a href="' + p.link + '" target="_blank">查看详情 →</a>';
+
+      if (p.type === "free") {
+        freeList.appendChild(card);
+      } else {
+        paidList.appendChild(card);
+      }
+    });
+  }
+
+  render();
+</script>
+
+</body>
+</html>
